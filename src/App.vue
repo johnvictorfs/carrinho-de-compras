@@ -3,11 +3,12 @@
     <NavBar></NavBar>
     <b-container>
       <b-row class="justify-content-md-left">
-        <b-col md="auto">
+        <b-col md="auto" class="mt-3">
           <ProductsTable :products="products"/>
         </b-col>
-        <b-col md="auto">
-          <!--<b-table striped hover :items="selected" />-->
+        <b-col></b-col>
+        <b-col md="auto" class="mt-3">
+          <ProductsSelected></ProductsSelected>
         </b-col>
       </b-row>
     </b-container>
@@ -16,6 +17,7 @@
 
 <script>
   import ProductsTable from './components/ProductsList.vue'
+  import ProductsSelected from './components/ProductsSelected.vue'
   import NavBar from './components/NavBar.vue'
   import axios from 'axios';
 
@@ -23,6 +25,7 @@
     name: 'app',
     components: {
       ProductsTable,
+      ProductsSelected,
       NavBar
     },
     data: () => ({
@@ -38,7 +41,7 @@
 
 <style>
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    font-family: 'Kanit', 'Rubik', 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;

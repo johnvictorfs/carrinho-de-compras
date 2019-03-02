@@ -1,15 +1,13 @@
 <template>
-  <b-navbar toggleable="lg" type="dark" variant="dark" class="fixed-top">
-    <b-navbar-brand href="/">NavBar</b-navbar-brand>
+  <b-navbar toggleable="lg" type="dark" variant="dark" class="fixed-top dark-grad">
+    <b-navbar-brand href="/">
+      <img :src="require('../assets/cart-icon.png')" width="32" height="32" class="d-inline-block align-top" alt="Cart Logo" />
+      Carrinho de Compras
+    </b-navbar-brand>
 
     <b-navbar-toggle target="nav_collapse"/>
 
     <b-collapse is-nav id="nav_collapse">
-      <!-- Left aligned nav items -->
-      <b-navbar-nav>
-
-      </b-navbar-nav>
-
       <!-- Right aligned nav items -->
       <b-navbar-nav class="ml-auto">
         <b-nav-item disabled>
@@ -31,3 +29,9 @@
     name: "NavBar"
   }
 </script>
+
+<style scoped>
+  .dark-grad {
+    background-image: linear-gradient(to left, #363535, #626661);
+  }
+</style>
