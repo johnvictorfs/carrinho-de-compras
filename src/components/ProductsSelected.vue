@@ -16,7 +16,7 @@
         </b-table>
         <b-button variant="danger" @click="clearProducts" :disabled="selectedProducts.length === 0">
           Limpar Carrinho
-          <i class="fas fa-times"></i>
+          <i class="fas fa-trash"></i>
         </b-button>
       </b-card-text>
     </b-card>
