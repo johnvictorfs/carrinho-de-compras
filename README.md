@@ -1,6 +1,6 @@
 # Carrinho de Compras
 
-- Demo: https://carrinho-de-compras.netlify.com/
+- Demo: https://carrinho-de-compras.netlify.com/ [![Netlify Status](https://api.netlify.com/api/v1/badges/190076cc-faf9-4e21-88aa-5cd7d369fc0f/deploy-status)](https://app.netlify.com/sites/carrinho-de-compras/deploys)
 
 ## Pacotes Utilizados
 - [Vue CLI](https://cli.vuejs.org/) `3.4.1`
