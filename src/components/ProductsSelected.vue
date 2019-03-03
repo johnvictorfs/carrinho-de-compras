@@ -41,38 +41,25 @@
       </b-card-text>
     </b-card>
 
-    <b-modal centered v-model="clearModal" title="Limpar Carrinho">
-      <p>Tem certeza que deseja limpar o Carrinho de Compras?</p>
-
-      <div slot="modal-footer" class="w-100">
-        <b-button-toolbar class="float-right">
-
-          <b-button-group class="mx-1">
-            <b-button size="sm" variant="danger" @click="clearModal=false">
-              <i class="fas fa-times"></i>
-              Cancelar
-            </b-button>
-          </b-button-group>
-
-          <b-button-group class="mx-1">
-            <b-button size="sm" variant="success" @click="clearProducts">
-              <i class="fas fa-check"></i>
-              Confirmar
-            </b-button>
-          </b-button-group>
-
-        </b-button-toolbar>
-      </div>
-    </b-modal>
+    <ConfirmModal
+            v-model="clearModal"
+            title="Limpar Carrinho"
+            text="Tem certeza que deseja limpar o Carrinho de Compras?"
+            @confirm="clearProducts"
+    ></ConfirmModal>
 
   </div>
 </template>
 
 <script>
   import helper from '../helper.js'
+  import ConfirmModal from './ConfirmModal.vue'
 
   export default {
     name: "ProductsSelected",
+    components: {
+      ConfirmModal
+    },
     data: () => ({
       clearModal: false,
       fields: [
@@ -102,9 +89,6 @@
          *
          * @returns Number
          */
-        if (this.selectedProducts.length === 0) {
-          return 0;
-        }
         let total = 0;
         for (let i = 0; i < this.selectedProducts.length; ++i) {
           total += parseFloat(this.selectedProducts[i].valor);

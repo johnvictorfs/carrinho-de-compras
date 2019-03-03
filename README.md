@@ -56,7 +56,7 @@ npm run build
 
 ***
 
-### Lintar o código
+### Linting do código
 ```
 npm run lint
 ```
