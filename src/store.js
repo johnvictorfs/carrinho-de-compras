@@ -22,6 +22,14 @@ export default new Vuex.Store({
        */
       state.selectedProducts = [];
       localStorage.removeItem('selectedProducts');
+    },
+    REMOVE_PRODUCT(state, product) {
+      /**
+       * Remove produto da lista de produtos selecionados
+       */
+      let index = state.selectedProducts.indexOf(product);
+      state.selectedProducts.splice(index, 1);
+      localStorage.setItem('selectedProducts', JSON.stringify(state.selectedProducts));
     }
   },
   actions: {
@@ -29,7 +37,10 @@ export default new Vuex.Store({
       commit('UPDATE_PRODUCTS', products);
     },
     clearProducts({commit}) {
-      commit('CLEAR_PRODUCTS')
+      commit('CLEAR_PRODUCTS');
+    },
+    removeProduct({commit}, product) {
+      commit('REMOVE_PRODUCT', product);
     }
   }
 })

@@ -1,21 +1,24 @@
 <template>
-  <b-form-group>
-    <b-list-group>
-      <b-card v-for="product in visibleProducts" :key="product.id" class="shadow mb-3 bg-white rounded">
-        <b-card-title>
-          <b-form-checkbox v-model="selected" :value="product" @input="updateProducts">
-            {{ toTitleCase(product.descricao) }}
-          </b-form-checkbox>
-        </b-card-title>
-        <b-card-sub-title>
-          <b-badge variant="info">
-            <strong>R$ {{ product.valor.replace('.', ',') }}</strong>
-          </b-badge>
-        </b-card-sub-title>
-      </b-card>
-    </b-list-group>
+  <b-container>
+    <b-form-group>
+      <b-list-group>
+        <b-form-input class="mb-3" v-model="search" type="text" placeholder="Pesquisar"></b-form-input>
+        <b-card v-for="product in currentPageProducts" :key="product.id" class="shadow mb-3 bg-white rounded">
+          <b-card-title>
+            <b-form-checkbox v-model="selected" :value="product" @input="updateProducts">
+              {{ toTitleCase(product.descricao) }}
+            </b-form-checkbox>
+          </b-card-title>
+          <b-card-sub-title>
+            <b-badge variant="info">
+              <strong>R$ {{ product.valor.replace('.', ',') }}</strong>
+            </b-badge>
+          </b-card-sub-title>
+        </b-card>
+      </b-list-group>
+    </b-form-group>
     <b-pagination-nav base-url="#" :number-of-pages="pages" v-model="currentPage"/>
-  </b-form-group>
+  </b-container>
 </template>
 
 <script>
@@ -24,9 +27,13 @@
   export default {
     name: 'ProductsTable',
     props: {
-      products: Array
+      products: {
+        type: Array,
+        required: true
+      }
     },
     data: () => ({
+      search: '',
       currentPage: 1,
       pageSize: 5
     }),
@@ -45,18 +52,32 @@
          *
          * @returns Number
          */
-        if (this.products.length === 0) {
+        let pages = Math.floor(this.filteredProducts.length / this.pageSize)
+        if (pages <= 1) {
           return 1;
         }
-        return Math.ceil(this.products.length / this.pageSize) - 1;
+        return pages;
       },
-      visibleProducts() {
+      currentPageProducts() {
         /**
-         * Filtra os produtos visíveis na página em determinado momento de acordo com a página atual
+         * Filtra os produtos visíveis na página de acordo com a página atual
          *
          * @returns Array
          */
-        return this.products.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+        let start = (this.currentPage * this.pageSize) - this.pageSize;
+        let end = start + this.pageSize;
+        return this.filteredProducts.slice(start, end);
+      },
+      filteredProducts() {
+        /**
+         * Filtra os produtos visíveis na página de acordo com a pesquisa do usuário, também usa
+         * o filtro da página atual em consideração
+         *
+         * @returns Array
+         */
+        return this.products.filter(prod => {
+          return prod.descricao.toLowerCase().includes(this.search.toLowerCase());
+        })
       }
     },
     methods: {

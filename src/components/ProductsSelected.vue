@@ -13,6 +13,11 @@
           <template slot="valor" slot-scope="data">
             R$ {{ data.item.valor.replace('.', ',') }}
           </template>
+          <template slot="remove" slot-scope="data">
+            <b-button size="sm" variant="danger" @click="removeProduct(data.item)">
+              <i class="fas fa-times"></i>
+            </b-button>
+          </template>
         </b-table>
         <b-button variant="danger" @click="clearProducts" :disabled="selectedProducts.length === 0">
           Limpar Carrinho
@@ -45,8 +50,9 @@
     name: "ProductsSelected",
     data: () => ({
       fields: [
-        {key: 'descricao', label: 'Nome'},
-        {key: 'valor', label: 'Preço'}
+        {key: 'descricao', label: 'Nome', sortable: true},
+        {key: 'valor', label: 'Preço', sortable: true},
+        {key: 'remove', label: ''}
       ]
     }),
     filters: {
@@ -82,6 +88,9 @@
     },
     methods: {
       toTitleCase: helper.toTitleCase,
+      removeProduct(item) {
+        this.$store.dispatch('removeProduct', item).then();
+      },
       clearProducts() {
         this.$store.dispatch('clearProducts').then();
       }
