@@ -13,7 +13,7 @@
         <b-nav-item disabled>
           feito por João Victor
         </b-nav-item>
-        <b-nav-item href="https://github.com/johnvictorfs/desafio-fb" target="_blank">
+        <b-nav-item href="https://github.com/johnvictorfs/carrinho-de-compras" target="_blank">
           <i class="fab fa-github"></i>
         </b-nav-item>
         <b-nav-item href="mailto:johnvictorfs@gmail.com" target="_blank">
