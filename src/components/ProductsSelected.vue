@@ -19,7 +19,7 @@
             </b-button>
           </template>
         </b-table>
-        <b-button variant="danger" @click="clearProducts" :disabled="selectedProducts.length === 0">
+        <b-button variant="danger" @click="clearModal = true" :disabled="selectedProducts.length === 0">
           Limpar Carrinho
           <i class="fas fa-trash"></i>
         </b-button>
@@ -40,6 +40,31 @@
         </small>
       </b-card-text>
     </b-card>
+
+    <b-modal centered v-model="clearModal" title="Limpar Carrinho">
+      <p>Tem certeza que deseja limpar o Carrinho de Compras?</p>
+
+      <div slot="modal-footer" class="w-100">
+        <b-button-toolbar class="float-right">
+
+          <b-button-group class="mx-1">
+            <b-button size="sm" variant="danger" @click="clearModal=false">
+              <i class="fas fa-times"></i>
+              Cancelar
+            </b-button>
+          </b-button-group>
+
+          <b-button-group class="mx-1">
+            <b-button size="sm" variant="success" @click="clearProducts">
+              <i class="fas fa-check"></i>
+              Confirmar
+            </b-button>
+          </b-button-group>
+
+        </b-button-toolbar>
+      </div>
+    </b-modal>
+
   </div>
 </template>
 
@@ -49,6 +74,7 @@
   export default {
     name: "ProductsSelected",
     data: () => ({
+      clearModal: false,
       fields: [
         {key: 'descricao', label: 'Nome', sortable: true},
         {key: 'valor', label: 'Preço', sortable: true},
@@ -92,6 +118,7 @@
         this.$store.dispatch('removeProduct', item).then();
       },
       clearProducts() {
+        this.clearModal = false;
         this.$store.dispatch('clearProducts').then();
       }
     }

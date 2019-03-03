@@ -3,6 +3,7 @@
     <b-form-group>
       <b-list-group>
         <b-form-input class="mb-3" v-model="search" type="text" placeholder="Pesquisar"></b-form-input>
+        <b-alert show variant="danger" v-if="currentPageProducts.length <= 0">Nenhum Resultado Encontrado</b-alert>
         <b-card v-for="product in currentPageProducts" :key="product.id" class="shadow mb-3 bg-white rounded">
           <b-card-title>
             <b-form-checkbox v-model="selected" :value="product" @input="updateProducts">
