@@ -32,6 +32,6 @@
 
 <style scoped>
   .dark-grad {
-    background-image: linear-gradient(to left, #363535, #626661);
+    background-image: linear-gradient(to left, #363535, #737872);
   }
 </style>

@@ -25,7 +25,7 @@
         </b-button>
       </b-card-text>
     </b-card>
-    <b-card class="shadow bg-white rounded" header-tag="header">
+    <b-card class="shadow bg-white rounded mb-3" header-tag="header">
       <h6 slot="header" class="mb-0">
         Valor Total:
         <b-button disabled>
