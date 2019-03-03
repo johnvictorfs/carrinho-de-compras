@@ -1,5 +1,7 @@
 # Carrinho de Compras
 
+- Demo: https://carrinho-de-compras.netlify.com/
+
 ## Pacotes Utilizados
 - [Vue CLI](https://cli.vuejs.org/) `3.4.1`
 - [Vue](https://vuejs.org/) `2.6.6`
@@ -13,6 +15,7 @@
 
 - Listar produtos de uma [API](https://api.jsonbin.io/b/5c63035e1198012fc895fba7)
 - Adicionar e remover produtos do carrinho de compras
+- Salva produtos selecionados em localStorage para mantê-los após reabrir a página
 - Limpar todo o carrinho
 - Pesquisar produtos
 
